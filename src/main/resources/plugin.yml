@@ -1,0 +1,6 @@
+name: MineSkyBridge
+version: '1.0.1-BETA'
+main: net.minesky.MineSkyBridge
+api-version: '1.19'
+author: Bruno C. (zBrunoC)
+depend: [Vault, SuperVanish]

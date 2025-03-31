@@ -19,7 +19,11 @@ public class PlayerInfo implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         var player = e.getPlayer();
-        SendMessages.sendVanishUpdate(player, VanishAPI.isInvisible(player));
+        if (!VanishAPI.isInvisible(player)) {
+            SendMessages.sendVanishUpdate(player, true);
+        } else {
+            SendMessages.sendVanishUpdate(player, false);
+        }
         UUID playerUUID = e.getPlayer().getUniqueId();
         var offlinePlayer = Bukkit.getOfflinePlayer(player.getUniqueId());
 
@@ -49,4 +53,5 @@ public class PlayerInfo implements Listener {
         Player p = e.getPlayer();
         SendMessages.sendVanishUpdate(p, VanishAPI.isInvisible(p));
     }
+
 }

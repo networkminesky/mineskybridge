@@ -29,6 +29,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>codemc-creatorfromhell</id>
+            <url>https://repo.codemc.io/repository/creatorfromhell/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -41,15 +45,16 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.MilkBowl</groupId>
-            <artifactId>VaultAPI</artifactId>
-            <version>1.7</version>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>VaultUnlockedAPI</artifactId>
+            <version>2.20</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.zBrunoC</groupId>
             <artifactId>mineskyvanish</artifactId>
             <version>ba0090ca66</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

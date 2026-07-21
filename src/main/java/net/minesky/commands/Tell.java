@@ -42,7 +42,7 @@ public class Tell implements CommandExecutor, TabCompleter {
            final Player player = Bukkit.getPlayer(args[0]);
            final String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length)).replace('&', '§');
 
-           if (!player.isOnline()) {
+           if (!player.isOnline() || player == null) {
                sender.sendMessage(Utils.c("&cEsse jogador não existe ou não está online."));
                return true;
            }

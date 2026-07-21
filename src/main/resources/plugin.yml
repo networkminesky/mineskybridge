@@ -3,7 +3,7 @@ version: '1.0.2-BETA'
 main: net.minesky.MineSkyBridge
 api-version: '26.1'
 author: Bruno C. (zBrunoC)
-depend: [Vault, SuperVanish]
+depend: [Vault, MineSkyVanish]
 folia-supported: true
 
 commands:

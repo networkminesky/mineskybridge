@@ -3,6 +3,7 @@ package net.minesky.event;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import net.minesky.MineSkyBridge;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
@@ -19,6 +20,7 @@ public class MessageListener implements PluginMessageListener {
 
         String playerName = input.readUTF();
         UUID playerUUID = UUID.fromString(input.readUTF());
+        Player who = (Player) Bukkit.getOfflinePlayer(playerUUID);
         int amount = Integer.parseInt(input.readUTF());
 
         MineSkyBridge.l.info("👤 Player: " + playerName + " 💰 Valor: " + amount);

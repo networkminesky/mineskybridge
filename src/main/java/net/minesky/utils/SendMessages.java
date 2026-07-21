@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Collection;
 
 public class SendMessages {
 
@@ -38,8 +39,12 @@ public class SendMessages {
             dos.writeUTF(player.getUniqueId().toString());
             dos.writeBoolean(vanished);
 
-            Bukkit.getOnlinePlayers().forEach(p ->
-                    p.sendPluginMessage(MineSkyBridge.getInstance(), "minesky:proxy", baos.toByteArray()));
+            byte[] message = baos.toByteArray();
+
+            Collection<? extends Player> players = Bukkit.getOnlinePlayers();
+            if (!players.isEmpty()) {
+                players.forEach(p -> p.sendPluginMessage(MineSkyBridge.getInstance(), "minesky:proxy", message));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

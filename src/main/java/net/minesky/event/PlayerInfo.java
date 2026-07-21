@@ -1,12 +1,10 @@
 package net.minesky.event;
 
-import de.myzelyam.api.vanish.PlayerHideEvent;
-import de.myzelyam.api.vanish.PlayerShowEvent;
-import de.myzelyam.api.vanish.VanishAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minesky.MineSkyBridge;
-import net.minesky.hooks.Vault;
+import net.minesky.hooks.VaultHook;
 import net.minesky.utils.SendMessages;
+import net.mineskyvanish.api.VanishAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,12 +35,12 @@ public class PlayerInfo implements Listener {
         MineSkyBridge.PlayerVault
                 .computeIfPresent(playerUUID, (p, amount) -> {
                     MineSkyBridge.l.info("Setando dinheiro para " + player.getName() + " Valor: " + amount);
-                    Vault.economy.depositPlayer(offlinePlayer, amount);
+                    VaultHook.economy.depositPlayer(offlinePlayer, amount);
                     return null;
                 });
     }
 
-    @EventHandler
+   /* @EventHandler
     public void onPlayerHide(PlayerHideEvent e) {
         Player p = e.getPlayer();
         SendMessages.sendVanishUpdate(p, VanishAPI.isInvisible(p));
@@ -52,6 +50,7 @@ public class PlayerInfo implements Listener {
     public void onPlayerShow(PlayerShowEvent e) {
         Player p = e.getPlayer();
         SendMessages.sendVanishUpdate(p, VanishAPI.isInvisible(p));
-    }
+    }*/
+
 
 }

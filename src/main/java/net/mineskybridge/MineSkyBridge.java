@@ -1,9 +1,9 @@
 package net.mineskybridge;
 
-import net.mineskybridge.event.MessageListener;
+import net.minesky.api.messaging.Messaging;
+import net.mineskybridge.event.BridgeNetworkListener;
 import net.mineskybridge.event.PlayerInfo;
 import net.mineskybridge.hooks.VaultHook;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -15,6 +15,7 @@ public final class MineSkyBridge extends JavaPlugin {
 
     public static final Map<UUID, Integer> PlayerVault = new HashMap<>();
     public static Logger l;
+    private BridgeNetworkListener networkListener;
 
     @Override
     public void onEnable() {
@@ -32,11 +33,17 @@ public final class MineSkyBridge extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "minesky:proxy");
-        getServer().getMessenger().registerIncomingPluginChannel(this, "minesky:proxy", new MessageListener());
+
+        if (Messaging.hasObserver()) {
+            this.networkListener = new BridgeNetworkListener();
+            Messaging.registerListener("MineSkyBridge", this.networkListener);
+            l.info("Mainframe Messaging registrado com sucesso no canal 'minesky:network'.");
+        } else {
+            l.warning("Mainframe Messaging desabilitado ou sem conexao ativa com o MongoDB!");
+        }
+
         getServer().getPluginManager().registerEvents(new PlayerInfo(), this);
 
-        l.info("Canais registrados: " + String.join(", ", Bukkit.getMessenger().getIncomingChannels()));
         l.info("MineSkyBridge habilitado com sucesso!");
     }
 
@@ -63,8 +70,9 @@ public final class MineSkyBridge extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getServer().getMessenger().unregisterIncomingPluginChannel(this);
-        getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+        if (networkListener != null) {
+            Messaging.unregisterListener(networkListener);
+        }
         l.info("MineSkyBridge desabilitado.");
     }
 }

@@ -85,5 +85,11 @@
             <version>1.0.0-BETA</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.networkminesky.mainframe</groupId>
+            <artifactId>mainframe-api</artifactId>
+            <version>578767c23e</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

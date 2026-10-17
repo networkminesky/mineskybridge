@@ -1,9 +1,8 @@
-package net.minesky;
+package net.mineskybridge;
 
-import net.minesky.commands.*;
-import net.minesky.event.MessageListener;
-import net.minesky.event.PlayerInfo;
-import net.minesky.hooks.VaultHook;
+import net.mineskybridge.event.MessageListener;
+import net.mineskybridge.event.PlayerInfo;
+import net.mineskybridge.hooks.VaultHook;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,21 +36,12 @@ public final class MineSkyBridge extends JavaPlugin {
         getServer().getMessenger().registerIncomingPluginChannel(this, "minesky:proxy", new MessageListener());
         getServer().getPluginManager().registerEvents(new PlayerInfo(), this);
 
-        registerCommands();
-
         l.info("Canais registrados: " + String.join(", ", Bukkit.getMessenger().getIncomingChannels()));
         l.info("MineSkyBridge habilitado com sucesso!");
     }
 
     private boolean checkPlugin(String pluginName) {
         return getServer().getPluginManager().getPlugin(pluginName) != null;
-    }
-
-    private void registerCommands() {
-        this.getCommand("staffchat").setExecutor(new StaffChat());
-        this.getCommand("ping").setExecutor(new Ping());
-        this.getCommand("anunciar").setExecutor(new Anunciar());
-        this.getCommand("tell").setExecutor(new Tell());
     }
 
     private void logStartupMessage() {

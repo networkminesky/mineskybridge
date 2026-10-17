@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.minesky</groupId>
+    <groupId>net.mineskybridge</groupId>
     <artifactId>MineSkyBridge</artifactId>
-    <version>1.0.2-BETA</version>
+    <version>1.0.0-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>MineSkyBridge</name>
@@ -16,14 +16,44 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
     <repositories>
         <repository>
-            <id>papermc</id>
+            <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
             <id>jitpack.io</id>
@@ -36,11 +66,10 @@
     </repositories>
 
     <dependencies>
-        <!-- Folia API -->
         <dependency>
-            <groupId>dev.folia</groupId>
-            <artifactId>folia-api</artifactId>
-            <version>26.1.2.build.8-stable</version>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>[26.2.build,)</version>
             <scope>provided</scope>
         </dependency>
 
@@ -51,45 +80,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.zBrunoC</groupId>
+            <groupId>com.github.networkminesky</groupId>
             <artifactId>mineskyvanish</artifactId>
-            <version>ba0090ca66</version>
+            <version>1.0.0-BETA</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <defaultGoal>clean package</defaultGoal>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <release>${java.version}</release>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals><goal>shade</goal></goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
 </project>

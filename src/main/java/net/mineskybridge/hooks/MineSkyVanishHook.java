@@ -1,6 +1,6 @@
-package net.minesky.hooks;
+package net.mineskybridge.hooks;
 
-import net.mineskyvanish.api.VanishAPI;
+import net.mineskyvanish.api.vanish.VanishAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -12,7 +12,7 @@ public class MineSkyVanishHook {
     }
 
     public static boolean isPlayerVanished(UUID uuid) {
-        return isPlayerVanished(Bukkit.getPlayer(uuid));
+        return VanishAPI.getAllInvisiblePlayers().contains(uuid);
     }
 
     public static boolean isPlayerVanished(String rawUsername) {

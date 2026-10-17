@@ -1,43 +1,7 @@
 name: MineSkyBridge
 version: '1.0.2-BETA'
-main: net.minesky.MineSkyBridge
+main: net.mineskybridge.MineSkyBridge
 api-version: '26.1'
 author: Bruno C. (zBrunoC)
 depend: [Vault, MineSkyVanish]
 folia-supported: true
-
-commands:
-  staffchat:
-    description: Chat staff
-    usage: /s (mensagem)
-    aliases: [s]
-  ping:
-    description: commando de ping
-    usage: /ping
-  anunciar:
-    description: Anunciar no servidor
-    usage: /anunciar (mensagem)
-  tell:
-    description: Mandar uma mensagem privada para um player
-    usage: /tell (player) (mensagem)
-    aliases: [msg, m, whisper, w, pm, dm, t]
-  msgmsp:
-    description: Mudar para gm3
-    usage: /msgmsp
-
-permissions:
-  mineskybridge.tell.sendtovanished:
-    description: Permissão para mandar tell para jogadores de vanish
-    default: op
-  mineskybridge.spy:
-    description: Permissão para ver mensagem de tells
-    default: op
-  mineskybridge.staffchat:
-    description: Permissão de chat staff
-    default: op
-  mineskybridge.ping.others:
-    description: Permissão para ver ping de outros jogadores
-    default: op
-  mineskybridge.anunciar:
-    description: Permissão para anunciar no servidor
-    default: op

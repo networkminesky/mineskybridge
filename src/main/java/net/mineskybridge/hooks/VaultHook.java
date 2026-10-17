@@ -1,4 +1,4 @@
-package net.minesky.hooks;
+package net.mineskybridge.hooks;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
